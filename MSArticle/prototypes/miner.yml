@@ -1,6 +1,6 @@
 url: https://github.com/PaloAltoNetworks/wildcardipv4-miner
 description: >
-  ThreatConnect provides Threat Intelligence, Analytics, and Orchestration in One Platform
+  Extract the Microsoft IP Address space published in the document id=53602
 
 prototypes:
   msPublicSpace:

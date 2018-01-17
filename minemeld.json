@@ -6,10 +6,10 @@
   "description": "Miner to process csv documents from MS Article site",
   "entry_points": {
     "minemeld_nodes": {
-      "threatconnect.Miner": "MSArticle.node:Miner"
+      "MSArticle.Miner": "MSArticle.node:Miner"
     },
     "minemeld_prototypes": {
-      "threatconnect.prototypes": "MSArticle:prototypes"
+      "MSArticle.prototypes": "MSArticle:prototypes"
     }
   },
   "manifest_version": 0
