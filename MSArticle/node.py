@@ -5,6 +5,7 @@ import itertools
 import csv
 
 from minemeld.ft.csv import CSVFT
+from netaddr import IPNetwork, AddrFormatError
 
 LOG = logging.getLogger(__name__)
 RE_PATTERN = 'https:\\/\\/download\\.microsoft\\.com\\/download\\/[a-zA-Z0-9\\/\\-\\.]+'
@@ -15,6 +16,28 @@ class Miner(CSVFT):
 
     def configure(self):
         super(Miner, self).configure()
+
+    def _detect_ip_version(self, ip_addr):
+        try:
+            parsed = IPNetwork(ip_addr)
+        except (AddrFormatError, ValueError):
+            LOG.error('{} - Unknown IP version: {}'.format(self.name, ip_addr))
+            return None
+
+        if parsed.version == 4:
+            return 'IPv4'
+
+        if parsed.version == 6:
+            return 'IPv6'
+
+        return None
+
+    def _process_item(self, item):
+        super_data = super(Miner, self)._process_item(item)
+        ip_type = self._detect_ip_version(super_data[0][0])
+        attrs = super_data[0][1]
+        attrs['type'] = ip_type
+        return super_data
 
     def _build_iterator(self, now):
         if self.url is None:
