@@ -1,0 +1,33 @@
+url: https://github.com/PaloAltoNetworks/wildcardipv4-miner
+description: >
+  ThreatConnect provides Threat Intelligence, Analytics, and Orchestration in One Platform
+
+prototypes:
+  msPublicSpace:
+    author: Xavier Homs
+    class: MSArticle.Miner
+    development_status: EXPERIMENTAL
+    node_type: miner
+    indicator_types:
+      - IPv4
+      - IPv6
+    tags:
+      - extension
+      - microsoft
+    description: >
+      Grab Microsoft Public IP Space.
+    config:
+      url: https://www.microsoft.com/en-us/download/confirmation.aspx?id=53602
+      ignore_regex: Prefix,Type
+      fieldnames:
+        - indicator
+        - description
+      interval: 3600
+      # age out of indicators
+      age_out:
+        sudden_death: true
+        interval: 3600
+        default: null
+      # flag indicators with share level green
+      attributes:
+        share_level: green

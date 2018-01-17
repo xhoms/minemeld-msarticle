@@ -1,0 +1,16 @@
+{
+  "version": "0.1",
+  "name": "ms-article-miner",
+  "author": "Xavier Homs",
+  "author_email": "xhoms@paloaltonetworks.com",
+  "description": "Miner to process csv documents from MS Article site",
+  "entry_points": {
+    "minemeld_nodes": {
+      "threatconnect.Miner": "MSArticle.node:Miner"
+    },
+    "minemeld_prototypes": {
+      "threatconnect.prototypes": "MSArticle:prototypes"
+    }
+  },
+  "manifest_version": 0
+}
